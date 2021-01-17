@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->longText('description')->nullable();
             $table->string('price');
             $table->integer('category_id');
-            $table->string('photo')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
