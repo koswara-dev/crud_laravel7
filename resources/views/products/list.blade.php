@@ -3,6 +3,15 @@
 <div class="card">
     <div class="card-header">
         <strong>Products List</strong>
+        <form action="{{ route('search') }}">
+            <div class="form-group">
+              <label for="">Search</label>
+              <input type="text"
+                class="form-control" name="search" id="search" aria-describedby="helpId" placeholder="">
+              <small id="helpId" class="form-text text-muted">Type min 3 words</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
         <a href="{{ route('export') }}" class="btn btn-sm btn-warning float-right">
         <span class="fa fa-download"> Export</span></a>
         <a href="{{ route('products.create') }}" class="btn btn-sm btn-success float-right">

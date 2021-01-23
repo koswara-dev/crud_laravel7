@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('products', 'ProductController');
 Route::get('export', 'ProductController@export')->name('export');
+Route::get('products', 'ProductController@search')->name('search');

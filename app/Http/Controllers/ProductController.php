@@ -120,4 +120,14 @@ class ProductController extends Controller
     {
         return Excel::download(new ProductsExport, 'products.xlsx');
     }
+
+    public function search(Request $request) 
+    {
+        $query = $request->input('search');
+        $data = Product::select('*')
+                        ->where('name', 'like', "%$query%")
+                        ->orWhere('price', 'like', "%$query%")
+                        ->orWhere('category_id', 'like', "%$query%")->paginate(10);
+        return view('products.list', compact('data'));
+    }
 }
