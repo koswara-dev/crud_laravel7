@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
@@ -16,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::all();
+        $data = Product::all()->paginate(10);
         return view('products.list', compact('data'));
     }
 
@@ -121,11 +122,24 @@ class ProductController extends Controller
         return Excel::download(new ProductsExport, 'products.xlsx');
     }
 
+    public function importView()
+    {
+        return view('products.import');
+    }
+
+    public function import() 
+    {
+        Excel::import(new ProductsImport,request()->file('file'));
+           
+        return back();
+    }
+
     public function search(Request $request) 
     {
         $query = $request->input('search');
         $data = Product::select('*')
                         ->where('name', 'like', "%$query%")
+                        ->orWhere('description', 'like', "%$query%")
                         ->orWhere('price', 'like', "%$query%")
                         ->orWhere('category_id', 'like', "%$query%")->paginate(10);
         return view('products.list', compact('data'));

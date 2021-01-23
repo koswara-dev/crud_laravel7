@@ -4,6 +4,7 @@
     <div class="card-header">
         <h4>Products List</h4>
         <form action="{{ route('search') }}">
+        @csrf
             <div class="form-group">
               <label for="">Search</label>
               <input type="text"
@@ -12,8 +13,10 @@
             </div>
             <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i> Submit</button>
         </form>
+        <a href="{{ route('importView') }}" class="btn btn-sm btn-info float-right" style="margin-left:3px">
+        <span class="fa fa-download"> Import</span></a>
         <a href="{{ route('export') }}" class="btn btn-sm btn-warning float-right" style="margin-left:3px">
-        <span class="fa fa-download"> Export</span></a>
+        <span class="fa fa-upload"> Export</span></a>
         <a href="{{ route('products.create') }}" class="btn btn-sm btn-success float-right">
         <span class="fa fa-plus-circle"> Add New Product</span></a>
     </div>
@@ -44,9 +47,10 @@
             </tr>
         </thead>        
         <tbody>
-            <tr>   
+            <tr>
+            @php($no=1)
             @foreach($data as $product)                         
-                <td>{{ $product->id }}</td>
+                <td>{{ $no++ }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->description }}</td>
                 <td>{{ $product->price }}</td>
@@ -67,6 +71,7 @@
             @endforeach
         </tbody>        
         </table>
+        {!! $data->links() !!}
     </div>
 </div>
 @endsection
