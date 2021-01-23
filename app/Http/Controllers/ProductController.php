@@ -131,7 +131,7 @@ class ProductController extends Controller
     {
         Excel::import(new ProductsImport,request()->file('file'));
            
-        return back();
+        return view('products.list');
     }
 
     public function search(Request $request) 
