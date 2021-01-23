@@ -2,7 +2,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <strong>Products List</strong>
+        <h4>Products List</h4>
         <form action="{{ route('search') }}">
             <div class="form-group">
               <label for="">Search</label>
@@ -10,9 +10,9 @@
                 class="form-control" name="search" id="search" aria-describedby="helpId" placeholder="">
               <small id="helpId" class="form-text text-muted">Type min 3 words</small>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i> Submit</button>
         </form>
-        <a href="{{ route('export') }}" class="btn btn-sm btn-warning float-right">
+        <a href="{{ route('export') }}" class="btn btn-sm btn-warning float-right" style="margin-left:3px">
         <span class="fa fa-download"> Export</span></a>
         <a href="{{ route('products.create') }}" class="btn btn-sm btn-success float-right">
         <span class="fa fa-plus-circle"> Add New Product</span></a>
