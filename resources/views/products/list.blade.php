@@ -2,7 +2,9 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <strong>Product List</strong>
+        <strong>Products List</strong>
+        <a href="{{ route('export') }}" class="btn btn-sm btn-warning float-right">
+        <span class="fa fa-download"> Export</span></a>
         <a href="{{ route('products.create') }}" class="btn btn-sm btn-success float-right">
         <span class="fa fa-plus-circle"> Add New Product</span></a>
     </div>
